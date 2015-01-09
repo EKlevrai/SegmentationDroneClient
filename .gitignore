@@ -1,0 +1,15 @@
+*.log
+*.yml
+*.types
+*jshintrc
+*.jsdtscope
+*.prefs
+*.container
+*.name
+*.tern-project
+*.classpath
+*.project
+*.class
+.metadata/*
+
+
