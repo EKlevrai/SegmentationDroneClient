@@ -17,8 +17,10 @@ public class SocketMessage {
 
     public SocketMessage() {}
     
-    
-    
+    /**
+     * definit les fonctions de callback propre à socket.io;
+     * @param eventCallback : fonctions de callback propre à socket.io
+     */
     public static void start(CallbackAdapter eventCallback){
     	callback=new Callback(eventCallback);
        try {
@@ -27,14 +29,13 @@ public class SocketMessage {
 		e1.printStackTrace();
 	}
     }
-    public static void send(String message) {
-        try {
-            JSONObject json = new JSONObject();
-            json.putOpt("message", message);
-            socket.emit("hello", json);
-        } catch (JSONException ex) {
-            ex.printStackTrace();
-        }
+    /**
+     * envoie de message au serveur
+     * @param ev : string caracterisant la nature de l'event
+     * @param data : json composant les données du message
+     */
+    public static void send(String ev,JSONObject data) {
+        socket.emit(ev, data);
     }
 
     public static void end() {

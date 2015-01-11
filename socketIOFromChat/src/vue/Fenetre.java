@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.json.JSONObject;
+
 import socket.EventCallback;
 import socket.SocketMessage;
 
@@ -18,6 +20,17 @@ public class Fenetre extends JFrame{
 	private int numColor;
 	JButton button;
 	JPanel pane;
+	
+	JPanel streamArea;
+	JPanel buttonCommands;
+	JButton altUp;
+	JButton altDown;
+	JButton rotateClock;
+	JButton rotateUnclock;
+	JButton orientFront;
+	JButton orientBack;
+	JButton orientLeft;
+	JButton orientRight;
 	public Fenetre(){
 		cols=new Color[]{Color.RED,Color.BLACK,Color.BLUE,Color.GREEN,Color.GRAY,Color.CYAN};
 		numColor=0;
@@ -58,8 +71,9 @@ public class Fenetre extends JFrame{
         });
         
     }
-    private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
-    		SocketMessage.send("yolo");
+    private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    	JSONObject jobj=new JSONObject();	
+    	SocketMessage.send("hello",jobj);
     }
 	
 	public void repaint(){
