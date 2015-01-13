@@ -20,7 +20,7 @@ public class EventCallback implements CallbackAdapter{
 	@Override
 	public void on(String event, JSONObject data) {
 		if (event.equals("hello")) {
-			F.repaint();
+			//F.repaint();
 		}		
 	}
 
