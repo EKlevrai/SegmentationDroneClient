@@ -2,6 +2,7 @@ package socket;
 
 import model.CallbackAdapter;
 
+import org.eclipse.swt.widgets.Display;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +21,12 @@ public class EventCallback implements CallbackAdapter{
 	@Override
 	public void on(String event, JSONObject data) {
 		if (event.equals("hello")) {
-			//F.repaint();
+			Display.getDefault().syncExec(new Runnable() {
+			    public void run() {
+					F.repaint();
+					System.out.println("MERCI CANU");
+			    }
+			});
 		}		
 	}
 

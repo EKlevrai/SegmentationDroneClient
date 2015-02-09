@@ -1,5 +1,7 @@
 package model;
 
+import io.socket.SocketIOException;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,8 +22,9 @@ public interface CallbackAdapter {
      * le  serveur emet sur la socket un message de la forme :::
      * @param event : string qui représente la nature de l'evenement
      * @param data : JSONobject qui presente les potentielles données pour mieux definir
+     * @throws SocketIOException 
      */
-    public void on(String event, JSONObject data);
+    public void on(String event, JSONObject data) throws SocketIOException;
     /**
      * Le serveur communique par message(type string)
      * @param message : le message
@@ -31,7 +34,7 @@ public interface CallbackAdapter {
      * Le serveur communique par message(type JSONObject)
      * @param json : l'objet json composant le message
      */
-    public void onMessage(JSONObject json);
+    public void onMessage(JSONObject json) throws SocketIOException;
     /**
      * callback à executer lorsque la connexion est établie
      */

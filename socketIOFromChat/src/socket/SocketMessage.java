@@ -7,7 +7,6 @@ import java.net.MalformedURLException;
 import model.Callback;
 import model.CallbackAdapter;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -23,11 +22,13 @@ public class SocketMessage {
      */
     public static void start(CallbackAdapter eventCallback){
     	callback=new Callback(eventCallback);
-       try {
-		socket = new SocketIO("http://localhost:3000",callback);
-	} catch (MalformedURLException e1) {
-		e1.printStackTrace();
-	}
+	    try {
+	    	socket = new SocketIO("http://localhost:3000/");
+	   	} catch (MalformedURLException e1) {
+	   		e1.printStackTrace();
+	   	}
+	    System.out.println("url passed");
+	   	socket.connect(callback);
     }
     /**
      * envoie de message au serveur

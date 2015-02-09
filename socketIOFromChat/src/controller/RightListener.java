@@ -11,7 +11,7 @@ public class RightListener implements org.eclipse.swt.widgets.Listener {
 	@Override
 	public void handleEvent(Event arg0) {
 		JSONObject jobj=new JSONObject();	
-    	SocketMessage.send("hello",jobj);
+    	SocketMessage.send("goTest",jobj);
 	}
 
 }
