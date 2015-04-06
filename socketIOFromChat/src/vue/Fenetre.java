@@ -34,12 +34,14 @@ public class Fenetre implements java.lang.Runnable{
 	
 	public Fenetre(){
 		xInterf = new XboxInterface(this);
+		System.out.println("mabite");
 		display = new Display();
 		cols=new Color[]{Display.getCurrent().getSystemColor(SWT.COLOR_BLACK),Display.getCurrent().getSystemColor(SWT.COLOR_BLUE),Display.getCurrent().getSystemColor(SWT.COLOR_CYAN),Display.getCurrent().getSystemColor(SWT.COLOR_DARK_MAGENTA),Display.getCurrent().getSystemColor(SWT.COLOR_GRAY)};
 		numColor=0;
 		shell= new Shell(display, SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shell.setText("Drone Control");
 		shell.setSize(FenetreConstantes.TailleX,FenetreConstantes.TailleY);
+		shell.addListener(SWT.Close, new Listener() {public void handleEvent(Event event) {System.exit(0);}});
 		GridLayout gl = new GridLayout(9, true);
 	    gl.horizontalSpacing = 0;
 	    gl.verticalSpacing = 0;
