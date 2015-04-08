@@ -6,16 +6,23 @@ import ch.aplu.xboxcontroller.*;
 import javax.swing.JOptionPane;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import socket.SocketMessage;
 import vue.Fenetre;
 
 public class XboxInterface
 {
 	private XboxController xc;
 	private Fenetre f;
+	private boolean manual;
+
 
 	public XboxInterface(Fenetre fenetre)
 	{ 
+		manual=true;
 		f = fenetre;
 		xc = new XboxController();
 
@@ -27,29 +34,22 @@ public class XboxInterface
 			return;
 		}
 
-		xc.addXboxControllerListener(new XboxControllerAdapter()
-		{
-			public void buttonA(boolean ispressed)
-			{
-				if(ispressed){
-					System.out.println("  GO UP");
-				}
-				else{Display.getDefault().syncExec(new Runnable() {
-						public void run() {
-							f.repaint();
-							System.out.println("STOP UP");
-						}
-					});
-				}
-			}
-
-		});
+		xc.addXboxControllerListener(new XboxListenerManual());//TODO go to auto
 
 
 
 		//xc.release();
 		//System.exit(0);
 	}
+
+	public void auto() {
+		xc.vibrate(0, 0);
+		xc.addXboxControllerListener(new XboxListenerAuto());
+	}
+	public void manual(){xc.vibrate(65535, 65535);
+		xc.addXboxControllerListener(new XboxListenerManual());
+	}
+
 
 
 }

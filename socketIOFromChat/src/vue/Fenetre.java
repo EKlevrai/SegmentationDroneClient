@@ -41,7 +41,7 @@ public class Fenetre implements java.lang.Runnable{
 		shell= new Shell(display, SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shell.setText("Drone Control");
 		shell.setSize(FenetreConstantes.TailleX,FenetreConstantes.TailleY);
-		shell.addListener(SWT.Close, new Listener() {public void handleEvent(Event event) {System.exit(0);}});
+		shell.addListener(SWT.Close, new Listener() {public void handleEvent(Event event) {xInterf.auto();System.exit(0);}});
 		GridLayout gl = new GridLayout(9, true);
 	    gl.horizontalSpacing = 0;
 	    gl.verticalSpacing = 0;
@@ -138,7 +138,7 @@ public void refresh(){
 		streamArea.setBackground(cols[numColor]);
 	}
 
-
+	public XboxInterface getManette(){return xInterf;}
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

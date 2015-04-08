@@ -20,21 +20,21 @@ public class EventCallback implements CallbackAdapter{
 
 	@Override
 	public void on(String event, JSONObject data) {
-		if (event.equals("hello")) {
-			Display.getDefault().syncExec(new Runnable() {
-			    public void run() {
-					F.repaint();
-					System.out.println("MERCI CANU");
-			    }
-			});
-		}		
+		if (event.equals("MODE_MANUAL")) {//gere le cas de l'activation du mode manuel
+			F.getManette().manual();
+		}
+		if (event.equals("MODE_AUTO")) {
+			F.getManette().auto();
+		}
+		
 	}
 
 
 	@Override
 	public void onMessage(String message) {
-		// TODO Auto-generated method stub
-	}
+		if (message.equals("MODE_MANUAL")) {
+			F.getManette().manual();
+		}	}
 
 
 	@Override

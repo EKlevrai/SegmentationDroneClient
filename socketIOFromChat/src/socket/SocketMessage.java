@@ -38,6 +38,10 @@ public class SocketMessage {
     public static void send(String ev,JSONObject data) {
         socket.emit(ev, data);
     }
+    public static void send(String ev) {
+        socket.emit(ev);
+    }
+    
 
     public static void end() {
     	socket.disconnect();
