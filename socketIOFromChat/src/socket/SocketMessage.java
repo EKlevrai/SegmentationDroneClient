@@ -4,6 +4,7 @@ import io.socket.SocketIO;
 
 import java.net.MalformedURLException;
 
+import main.Constantes;
 import model.Callback;
 import model.CallbackAdapter;
 
@@ -23,7 +24,7 @@ public class SocketMessage {
     public static void start(CallbackAdapter eventCallback){
     	callback=new Callback(eventCallback);
 	    try {
-	    	socket = new SocketIO("http://localhost:3000/");
+	    	socket = new SocketIO(Constantes.SocketURL);
 	   	} catch (MalformedURLException e1) {
 	   		e1.printStackTrace();
 	   	}

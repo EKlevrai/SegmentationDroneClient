@@ -1,6 +1,8 @@
 package vue;
 
 
+import main.Constantes;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -18,6 +20,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.*;
 import org.eclipse.swt.*;
 import org.json.JSONObject;
+
 
 
 
@@ -60,7 +63,7 @@ public class Fenetre implements java.lang.Runnable{
 		numColor=0;
 		shell= new Shell(display, SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shell.setText("Drone Control");
-		shell.setSize(FenetreConstantes.TailleX,FenetreConstantes.TailleY);
+		shell.setSize(Constantes.FenetreTailleX,Constantes.FenetreTailleY);
 		shell.addListener(SWT.Close, new Listener() {public void handleEvent(Event event) {xInterf.auto();System.exit(0);}});
 		GridLayout gl = new GridLayout(9, true);
 		gl.horizontalSpacing = 0;

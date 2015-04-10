@@ -1,5 +1,17 @@
 package controller.xbox;
 
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Calendar;
+
+import main.Constantes;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,6 +59,49 @@ public class XboxListenerManual extends XboxControllerAdapter {
 		else alt=0;
 		actualize();
 	}
+	public void buttonX(boolean ispressed){
+//		public static void saveImage(String imageUrl, String destinationFile) throws IOException {
+		InputStream is = null;
+		FileOutputStream os = null;
+		Calendar cal=Calendar.getInstance();
+			try {
+				URL url = new URL(Constantes.StreamURL);
+				 is = url.openStream();
+				 os = new FileOutputStream("photos/photo_"+cal.get(Calendar.HOUR_OF_DAY)+"_"+cal.get(Calendar.MINUTE)+"_"+cal.get(Calendar.SECOND)+".png");
+			} catch (MalformedURLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			byte[] b = new byte[2048];
+			int length;
+
+			try {
+				while ((length = is.read(b)) != -1) {
+					try {
+						os.write(b, 0, length);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			try {
+				is.close();
+				os.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 	
 	/**
 	 * set the magnitude to 0 if negligeable, or to its value
@@ -65,13 +120,13 @@ public class XboxListenerManual extends XboxControllerAdapter {
 	/**
 	 * unclockwise
 	 */
-	public void leftShoulder(boolean ispressed){
-		if(ispressed)clockwise=-2;
+	public void leftTrigger(double magnitude){
+		if(magnitude>0.50)clockwise=-2;
 		else clockwise=0;
 		actualize();
 	}
-	public void rightShoulder(boolean ispressed){
-		if(ispressed)clockwise=2;
+	public void rightShoulder(double magnitude){
+		if(magnitude>0.50)clockwise=2;
 		else clockwise=-0;
 		actualize();
 	}
