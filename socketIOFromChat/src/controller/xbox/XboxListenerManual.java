@@ -33,15 +33,17 @@ public class XboxListenerManual extends XboxControllerAdapter {
 			e.printStackTrace();
 		}
 		SocketMessage.send("new_direction", jobj);
+		//if(clockwise==1 || clockwise==-1 ){clockwise=0;}
+		//if(alt==1 || alt==1 ){alt=0;}
 	}
 	public void buttonA(boolean ispressed){
-		if(ispressed)alt=1;
-		else alt=0;
+		if(ispressed)alt=2;
+		else alt=-0;
 		actualize();
 	}
 	
 	public void buttonB(boolean ispressed){
-		if(ispressed)alt=-1;
+		if(ispressed)alt=-2;
 		else alt=0;
 		actualize();
 	}
@@ -63,14 +65,14 @@ public class XboxListenerManual extends XboxControllerAdapter {
 	/**
 	 * unclockwise
 	 */
-	public void leftTrigger(double value){
-		if(value>0.5)clockwise=-1;
+	public void leftShoulder(boolean ispressed){
+		if(ispressed)clockwise=-2;
 		else clockwise=0;
 		actualize();
 	}
-	public void rightTrigger(double value){
-		if(value>0.5)clockwise=1;
-		else clockwise=0;
+	public void rightShoulder(boolean ispressed){
+		if(ispressed)clockwise=2;
+		else clockwise=-0;
 		actualize();
 	}
 	public void start(boolean pressed){
